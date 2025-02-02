@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col pt-3 text-center">
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-primary" (click)="selectedComponent('roles')"
+        [ngClass]="currentComponent == 'roles' ? 'btn-primary text-white' : 'btn-outline-primary'">ROLES</button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="selectedComponent('designation')"
+        [ngClass]="currentComponent == 'designation' ? 'btn-primary text-white' : 'btn-outline-primary'">DESIGNATION</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col" *ngIf="currentComponent ==  'roles'">
+      <app-roles></app-roles>
+    </div>
+    <div class="col" *ngIf="currentComponent == 'designation'">
+      <app-designation></app-designation>
+    </div>
+  </div>
+</div>

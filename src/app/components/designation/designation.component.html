@@ -1,0 +1,25 @@
+<h1 class=" pt-3 text-center">DESIGNATION</h1>
+
+@if (isLoader) {
+    <div class="col text-center">
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading..
+        </button>
+    </div>
+} @else {
+    <div class="row">
+        @for (designation of designationList; track $index) {
+        <div class="col-4 pt-3">
+            <div class="card pt-3 pe-3">
+                <div class="card-body">
+                    <h4 class="card-title">{{designation.designation}}</h4>
+                    <p class="card-text">Some example text. Some example text.</p>
+                    <a href="#" class="card-link">modify</a>
+                    <a href="#" class="card-link">delete</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+}

@@ -1,0 +1,29 @@
+<h1 class="pt-3 text-center">ROLES</h1>
+
+@if (isLoader) {
+<div class="col text-center">
+  <button class="btn btn-primary">
+    <span class="spinner-border spinner-border-sm"></span>
+    Loading..
+  </button>
+</div>
+} @else {
+<div class="row">
+  <div class="col">
+    <table class="table table-striped  text-center">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Role Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of rolesList; let sno = index">
+          <td>{{sno + 1}}</td>
+          <td>{{role.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+}
