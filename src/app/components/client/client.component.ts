@@ -3,10 +3,11 @@ import { Client } from '../../model/class/client';
 import { ClientService } from '../../services/client.service';
 import { IApiResponse } from '../../model/interface/role';
 import { FormsModule } from '@angular/forms';
+import { AlertComponent } from "../alert/alert.component";
 
 @Component({
   selector: 'app-client',
-  imports: [FormsModule],
+  imports: [FormsModule, AlertComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
@@ -14,6 +15,10 @@ export class ClientComponent implements OnInit {
   clientObj: Client = new Client();
   clientList: Client[] = [];
   clientService = inject(ClientService);
+
+  alertType: string = '';
+  alertMessage: string = '';
+  alertClass: string = '';
 
   ngOnInit(): void {
     this.loadClient();
@@ -29,9 +34,13 @@ export class ClientComponent implements OnInit {
     this.clientService
       .addupdateClient(this.clientObj)
       .subscribe((res: IApiResponse) => {
-        res.result ? alert('Client saved successfully') : alert(res.message);
+        if(res.result) {
+          this.showAlert('Success', 'Client saved successfully', 'alert-success');
+        }
         this.loadClient();
         this.clientObj = new Client();
+      }, error => {
+        this.showAlert('Error', error.message, 'alert-danger');
       });
   }
 
@@ -43,7 +52,9 @@ export class ClientComponent implements OnInit {
     const isTrue = confirm('Are you sure to delete?');
     if (isTrue) {
       this.clientService.deleteClientById(id).subscribe((res: IApiResponse) => {
-        alert('Client deleted successfully');
+        if(res.result) {
+          this.showAlert('Success', 'Client deleted successfully', 'alert-success');
+        }
         this.loadClient();
       });
     }
@@ -51,5 +62,14 @@ export class ClientComponent implements OnInit {
 
   onReset() {
     this.clientObj = new Client();
+  }
+
+  showAlert(type: string, message: string, alertClass: string) {
+    this.alertType = type;
+    this.alertMessage = message;
+    this.alertClass = alertClass;
+    setTimeout(() => {
+      this.alertMessage = '';
+    }, 2000); // Clear the alert after 5 seconds
   }
 }

@@ -1,3 +1,9 @@
+<app-alert
+[type]="alertType"
+[message]="alertMessage"
+[alertClass]="alertClass"
+></app-alert>
+
 <div class="row">
     <div class="col-8">
         <div class="card">
@@ -27,8 +33,10 @@
                                     <td>{{item.contactNo}}</td>
                                     <td>{{item.city}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-primary" (click)="onEdit(item)">edit</button>
-                                        <button type="button" class="btn btn-outline-danger ms-1" (click)="onDelete(item.clientId)">delete</button>
+                                        <button type="button" class="btn btn-outline-primary"
+                                            (click)="onEdit(item)">edit</button>
+                                        <button type="button" class="btn btn-outline-danger ms-1"
+                                            (click)="onDelete(item.clientId)">delete</button>
                                     </td>
                                 </tr>
                                 }
@@ -49,15 +57,16 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="">Person name</label>
-                        <input type="text" #personName="ngModel" required minlength="5" [(ngModel)]="clientObj.contactPersonName" class="form-control">
-                      @if(personName.touched){
+                        <input type="text" #personName="ngModel" required minlength="5"
+                            [(ngModel)]="clientObj.contactPersonName" class="form-control">
+                        @if(personName.touched){
                         @if (personName?.errors?.['required']) {
-                            <div class="text-danger">Person name is required</div>
+                        <div class="text-danger">Person name is required</div>
                         }
                         @if(personName?.errors?.['minlength']){
-                            <div class="text-danger">min 5 chars are required</div>
+                        <div class="text-danger">min 5 chars are required</div>
                         }
-                      }
+                        }
                     </div>
                     <div class="col-6">
                         <label for="">Company Name</label>
