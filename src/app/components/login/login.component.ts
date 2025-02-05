@@ -18,7 +18,10 @@ export class LoginComponent {
   router = inject(Router);
 
   onlogin() {
-   if(this.loginobj.username == 'mnprathi233@gmail.com' && this.loginobj.password == 'Prathi#123') {
+   if(this.loginobj.username == 'mnprathi233@gmail.com' && this.loginobj.password == 'Prathi#123'
+    || this.loginobj.username == 'admin' && this.loginobj.password == 'admin'
+    || this.loginobj.username == 'user' && this.loginobj.password == 'user'
+   ) {
      console.log('Login success');
      localStorage.setItem('isLoggedin', 'true');
      this.router.navigate(['/client']);

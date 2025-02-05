@@ -1,0 +1,14 @@
+**** First commit and push the code ****
+
+ng add angular-cli-ghpages
+
+host url => https://{{github_username}}.github.io/{{github_repo_name}}/
+
+1. ng build --base-href "https://Pratheeban233.github.io/angular_18_project/"
+
+then, goto github repo settings -> github pages -> source branch -> main branch -> save
+
+2. npx angular-cli-ghpages --dir=dist/angular_18_project/browser
+
+after that, goto github repo settings -> github pages -> source branch -> ghpages branch -> save
+
