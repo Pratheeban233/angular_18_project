@@ -12,3 +12,4 @@ then, goto github repo settings -> github pages -> source branch -> main branch 
 
 after that, goto github repo settings -> github pages -> source branch -> ghpages branch -> save
 
+cool, now you can access the app using the host url
