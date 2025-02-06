@@ -1,0 +1,11 @@
+<div>
+    <textarea [(ngModel)]="base64Input" rows="5" placeholder="Paste Base64 TIFF here"></textarea>
+    <br>
+    <button (click)="convertTiffToPng()">Convert</button>
+    <br>
+    <div *ngIf="imageSrc">
+      <h3>Converted Image:</h3>
+      <img [src]="imageSrc" alt="Converted PNG Image">
+    </div>
+  </div>
+  

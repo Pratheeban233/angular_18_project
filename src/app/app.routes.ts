@@ -6,6 +6,7 @@ import { ClientProjectComponent } from './components/client-project/client-proje
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { authGuard } from './auth.guard';
+import { TiffViewerComponent } from './components/tiff-viewer/tiff-viewer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'employee', component: EmployeeComponent },
       { path: 'client', component: ClientComponent },
       { path: 'client-project', component: ClientProjectComponent },
+      { path: 'tiff-viewer', component: TiffViewerComponent }
     ],
   },
 ];
