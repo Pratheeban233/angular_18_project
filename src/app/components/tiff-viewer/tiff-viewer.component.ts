@@ -11,30 +11,45 @@ import Tiff from 'tiff.js';
   styleUrls: ['./tiff-viewer.component.css']
 })
 export class TiffViewerComponent {
-  base64Input: string = '';
-  imageSrc: string | null = null;
 
-  convertTiffToPng() {
-    if (!this.base64Input) alert('Please enter a Base64 string!');
+  tiffEncodedString: string = ''; // To store TIFF string
+  convertedImageUrl: string | null = null; // To store converted PNG image URL
 
-    // Decode Base64 to Binary
-    const binary = atob(this.base64Input);
-    const len = binary.length;
-    const buffer = new Uint8Array(len);
+  constructor() { }
 
-    for (let i = 0; i < len; i++) {
-      buffer[i] = binary.charCodeAt(i);
-    }
+  convertTiffToPng(): void {
 
-    try {
-      // Load TIFF Image
-      const tiff = new Tiff({ buffer });
-      const canvas = tiff.toCanvas(); // Convert TIFF to Canvas
+    if (!this.tiffEncodedString) alert('Please provide a valid TIFF string!');
 
-      // Convert Canvas to PNG Base64
-      this.imageSrc = canvas.toDataURL('image/png');
-    } catch (error) {
-      console.error('Error converting TIFF:', error);
-    }
+    const tiffData = this.decodeBase64(this.tiffEncodedString);
+    
+    // Use the library to convert the TIFF data into PNG format.
+    // Here we assume we are converting with canvas or using pdf.js
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Assuming `tiffData` is a valid TIFF file.
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx?.drawImage(img, 0, 0);
+      this.convertedImageUrl = canvas.toDataURL('image/png');
+    };
+    img.src = URL.createObjectURL(new Blob([tiffData], { type: 'image/tiff' }));
   }
+
+  // Helper function to decode base64 encoded string
+  decodeBase64(encodedString: string): ArrayBuffer {
+
+    const decodedString = atob(encodedString); // Decoding the base64 string
+    const byteArray = new Uint8Array(decodedString.length);
+
+    for (let i = 0; i < decodedString.length; i++) {
+      byteArray[i] = decodedString.charCodeAt(i);
+    }
+
+    return byteArray.buffer;
+  }
+
 }

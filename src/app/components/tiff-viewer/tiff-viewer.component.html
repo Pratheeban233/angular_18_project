@@ -1,11 +1,19 @@
-<div>
-    <textarea [(ngModel)]="base64Input" rows="5" placeholder="Paste Base64 TIFF here"></textarea>
-    <br>
-    <button (click)="convertTiffToPng()">Convert</button>
-    <br>
-    <div *ngIf="imageSrc">
-      <h3>Converted Image:</h3>
-      <img [src]="imageSrc" alt="Converted PNG Image">
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">TIFF to PNG Converter</h5>
+          <textarea class="form-control mb-3" rows="5" [(ngModel)]="tiffEncodedString" placeholder="Paste TIFF encoded string here"></textarea>
+          <button class="btn btn-primary btn-block" (click)="convertTiffToPng()">Convert</button>
+        </div>
+      </div>
     </div>
   </div>
-  
+
+  <div class="row mt-4" *ngIf="convertedImageUrl">
+    <div class="col-md-8 offset-md-2 text-center">
+      <img [src]="convertedImageUrl" class="img-fluid" alt="Converted Image" />
+    </div>
+  </div>
+</div>
