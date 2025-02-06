@@ -53,5 +53,6 @@ export class TiffViewerComponent {
 
   clear() {
     this.tiffEncodedString = '';
+    this.convertedImageUrl = null;
   }
 }
