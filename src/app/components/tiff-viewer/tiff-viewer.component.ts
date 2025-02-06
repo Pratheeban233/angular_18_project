@@ -6,28 +6,26 @@ import Tiff from 'tiff.js';
 @Component({
   selector: 'app-tiff-viewer',
   standalone: true,
-  imports:[FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './tiff-viewer.component.html',
-  styleUrls: ['./tiff-viewer.component.css']
+  styleUrls: ['./tiff-viewer.component.css'],
 })
 export class TiffViewerComponent {
-
   tiffEncodedString: string = ''; // To store TIFF string
   convertedImageUrl: string | null = null; // To store converted PNG image URL
 
-  constructor() { }
+  constructor() {}
 
   convertTiffToPng(): void {
-
     if (!this.tiffEncodedString) alert('Please provide a valid TIFF string!');
 
     const tiffData = this.decodeBase64(this.tiffEncodedString);
-    
+
     // Use the library to convert the TIFF data into PNG format.
     // Here we assume we are converting with canvas or using pdf.js
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
+
     // Assuming `tiffData` is a valid TIFF file.
     const img = new Image();
     img.onload = () => {
@@ -52,4 +50,7 @@ export class TiffViewerComponent {
     return byteArray.buffer;
   }
 
+  clear() {
+    this.tiffEncodedString = '';
+  }
 }

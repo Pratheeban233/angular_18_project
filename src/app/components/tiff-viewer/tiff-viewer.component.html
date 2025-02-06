@@ -5,11 +5,13 @@
         <div class="card-body">
           <h5 class="card-title">TIFF to PNG Converter</h5>
           <textarea class="form-control mb-3" rows="5" [(ngModel)]="tiffEncodedString" placeholder="Paste TIFF encoded string here"></textarea>
-          <button class="btn btn-primary btn-block" (click)="convertTiffToPng()">Convert</button>
+          <button class="btn btn-danger btn-block" (click)="clear()">Clear</button>
+          <button class="btn btn-primary btn-block mx-3" (click)="convertTiffToPng()">Convert</button>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row mt-4" *ngIf="convertedImageUrl">
     <div class="col-md-8 offset-md-2 text-center">
